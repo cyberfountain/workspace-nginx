@@ -12,13 +12,16 @@ RUN apk update && apk add \
 
 COPY ssl/generate-ssl.sh /etc/nginx/generate-ssl.sh
 RUN chmod +x /etc/nginx/generate-ssl.sh
-RUN cd /etc/nginx && ./generate-ssl.sh
 
 COPY vhosts/vhost.sh /etc/nginx/vhost.sh
 RUN chmod +x /etc/nginx/vhost.sh
-RUN cd /etc/nginx && ./vhost.sh
 
 COPY conf/nginx.conf /etc/nginx/nginx.conf
 
+COPY entrypoint/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 EXPOSE 80
 EXPOSE 443
+
+ENTRYPOINT ["/entrypoint.sh"]
