@@ -12,8 +12,8 @@ server {
     listen 443 ssl;
     index index.php index.html;
     server_name $DEV_DOMAIN;
-    error_log  /var/log/nginx/error_manual.log;
-    access_log /var/log/nginx/access_manual.log;
+    error_log  /var/log/nginx/error.log;
+    access_log /var/log/nginx/access.log;
     root /code/public;
 
     ssl_certificate /etc/nginx/${DEV_DOMAIN//.}.crt;
@@ -56,8 +56,8 @@ cat > /etc/nginx/conf.d/default.conf <<- EOF
 server {
     index index.php index.html;
     server_name $DEV_DOMAIN;
-    error_log  /var/log/nginx/error_manual.log;
-    access_log /var/log/nginx/access_manual.log;
+    error_log  /var/log/nginx/error.log;
+    access_log /var/log/nginx/access.log;
     root /code/public;
 
 
