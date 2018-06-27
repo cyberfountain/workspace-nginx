@@ -16,8 +16,8 @@ server {
     access_log /var/log/nginx/access_manual.log;
     root /code/public;
 
-    ssl_certificate /etc/nginx/ssl-cert.crt;
-    ssl_certificate_key /etc/nginx/ssl-cert.key;
+    ssl_certificate /etc/nginx/${DEV_DOMAIN//.}.crt;
+    ssl_certificate_key /etc/nginx/${DEV_DOMAIN//.}.key;
     ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
     ssl_ciphers         HIGH:!aNULL:!MD5;
 

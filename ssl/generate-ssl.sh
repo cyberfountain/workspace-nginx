@@ -38,12 +38,14 @@ DNS.2 = $BASE_DOMAIN
 EOF
 
 # The file name can be anything
-FILE_NAME="ssl-cert"
+FILE_NAME=${DEV_DOMAIN//.}
 
 # Remove previous keys
-echo "Removing existing certs like $FILE_NAME.*"
-chmod 770 $FILE_NAME.*
-rm $FILE_NAME.*
+echo "Removing existing certs"
+chmod 770 *.crt
+chmod 770 *.key
+rm *.crt
+rm *.key
 
 echo "Generating certs for $BASE_DOMAIN"
 
