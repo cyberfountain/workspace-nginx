@@ -87,7 +87,7 @@ cat >> /etc/nginx/conf.d/default.conf <<- EOF
     location /toolbox/redis-commander {
         proxy_pass http://redis-commander:8081;
     }
-    
+
     location ~ \.php$ {
         try_files \$uri =404;
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
