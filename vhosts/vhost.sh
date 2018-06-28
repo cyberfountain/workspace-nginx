@@ -41,7 +41,7 @@ EOF
 fi
 cat >> /etc/nginx/conf.d/default.conf <<- EOF
     location /toolbox/redis-commander {
-        proxy_pass http://localhost:8081;
+        proxy_pass http://redis-commander:8081;
     }
 
     location ~ \.php$ {
@@ -85,7 +85,7 @@ EOF
 fi
 cat >> /etc/nginx/conf.d/default.conf <<- EOF
     location /toolbox/redis-commander {
-        proxy_pass http://localhost:8081;
+        proxy_pass http://redis-commander:8081;
     }
 
     location ~ \.php$ {
