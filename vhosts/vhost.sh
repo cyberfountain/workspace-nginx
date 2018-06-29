@@ -40,7 +40,7 @@ cat >> /etc/nginx/conf.d/default.conf <<- EOF
 EOF
 fi
 cat >> /etc/nginx/conf.d/default.conf <<- EOF
-    location /toolbox/redis-commander/ {
+    location /redis-commander/ {
         proxy_pass http://redis-commander:8081/;
     }
 
@@ -84,7 +84,7 @@ cat >> /etc/nginx/conf.d/default.conf <<- EOF
 EOF
 fi
 cat >> /etc/nginx/conf.d/default.conf <<- EOF
-    location /toolbox/redis-commander/ {
+    location /redis-commander/ {
         proxy_pass http://redis-commander:8081/;
     }
 
