@@ -1,7 +1,8 @@
-FROM nginx:1.15.0-alpine
+FROM nginx:alpine
 
 LABEL maintainer="cyberfountain"
 
+ENV APPLICATION=wordpress
 ENV NGINX_LARAVEL_API false
 ENV DEV_DOMAIN "laravel.local"
 ENV NGINX_SSL true
