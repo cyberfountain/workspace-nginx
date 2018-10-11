@@ -106,11 +106,6 @@ fi
 if [ "$APPLICATION" = "wordpress" ]; then
 if [ "$NGINX_SSL" = true ]; then
 cat > /etc/nginx/conf.d/default.conf <<- EOF
-upstream php {
-        server unix:/tmp/php-cgi.socket;
-        server php;
-}
-
 server {
     listen 80;
     server_name $DEV_DOMAIN;
@@ -135,9 +130,10 @@ server {
     }
 
     location ~ \.php$ {
-        include fastcgi.conf;
-        fastcgi_intercept_errors on;
         fastcgi_pass php:9000;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+        include fastcgi_params;
     }
 
     location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
@@ -150,11 +146,6 @@ server {
 EOF
 else
 cat > /etc/nginx/conf.d/default.conf <<- EOF
-upstream php {
-        server unix:/tmp/php-cgi.socket;
-        server php;
-}
-
 server {
     index index.php index.html;
     server_name $DEV_DOMAIN;
@@ -167,9 +158,10 @@ server {
     }
 
     location ~ \.php$ {
-        include fastcgi.conf;
-        fastcgi_intercept_errors on;
         fastcgi_pass php:9000;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+        include fastcgi_params;
     }
 
     location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
