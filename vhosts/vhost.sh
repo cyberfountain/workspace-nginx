@@ -108,7 +108,7 @@ if [ "$NGINX_SSL" = true ]; then
 cat > /etc/nginx/conf.d/default.conf <<- EOF
 upstream php {
         server unix:/tmp/php-cgi.socket;
-        server php:9000;
+        server php;
 }
 
 server {
@@ -152,7 +152,7 @@ else
 cat > /etc/nginx/conf.d/default.conf <<- EOF
 upstream php {
         server unix:/tmp/php-cgi.socket;
-        server php:9000;
+        server php;
 }
 
 server {
