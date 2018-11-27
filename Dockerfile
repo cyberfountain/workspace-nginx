@@ -2,19 +2,15 @@ FROM nginx:alpine
 
 LABEL maintainer="cyberfountain"
 
-ENV APPLICATION=wordpress
+ENV APPLICATION "wordpress"
 ENV NGINX_LARAVEL_API false
-ENV DEV_DOMAIN "laravel.local"
-ENV NGINX_SSL true
+ENV DEV_DOMAIN "test.local"
 
 RUN apk update && apk add \
     openssl \
     bash
 
-COPY ssl/generate-ssl.sh /etc/nginx/generate-ssl.sh
-RUN chmod +x /etc/nginx/generate-ssl.sh
-
-COPY vhosts/vhost.sh /etc/nginx/vhost.sh
+COPY vhost/vhost.sh /etc/nginx/vhost.sh
 RUN chmod +x /etc/nginx/vhost.sh
 
 COPY conf/nginx.conf /etc/nginx/nginx.conf
