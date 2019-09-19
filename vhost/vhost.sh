@@ -100,3 +100,36 @@ server {
 }
 EOF
 fi
+
+if [ "$APPLICATION" = "expression" ]; then
+cat > /etc/nginx/conf.d/default.conf <<- EOF
+server {
+    index index.php index.html;
+    server_name $DEV_DOMAIN;
+    root /code;
+
+    location / {
+      index  index.html index.php;
+      try_files $uri $uri/ @ee;
+    }
+
+    location @ee {
+      rewrite ^(.*) /index.php$1 last;
+    }
+
+    location ~ \.php$ {
+        fastcgi_pass php:9000;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+        include fastcgi_params;
+    }
+
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
+            expires max;
+            log_not_found off;
+    }
+
+    client_max_body_size 100M;
+}
+EOF
+fi
